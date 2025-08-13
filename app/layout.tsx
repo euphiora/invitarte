@@ -1,5 +1,5 @@
 import "./globals.css";
-import Header from "./Header";
+// import Header from "./Header";
 
 export const metadata = {
   title: "Invitarte",
@@ -15,7 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
           <div className="min-h-screen flex flex-col">
-            <Header />
+            {/* <Header /> */}
             <main className="flex-1">{children}</main>
           </div>
       </body>

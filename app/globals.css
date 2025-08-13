@@ -6,6 +6,10 @@ h2 {
   @apply text-2xl font-extrabold tracking-tight;
 }
 
+html {
+  @apply scroll-smooth;
+}
+
 @layer base {
   :root {
 
