@@ -67,10 +67,10 @@ export default async function Home() {
             </p>
             <div className=" mt-10 grid grid-cols-1 gap-x-8 gap-y-6 text-base/7 font-semibold sm:grid-cols-2 md:flex lg:gap-x-10">
               <Button asChild variant="default">
-                <Link href="productos">Ver productos</Link>
+                <Link href="#productos">Ver productos</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link href="comocomprar">¿Cómo comprar?</Link>
+                <Link href="#comocomprar">¿Cómo comprar?</Link>
               </Button>
             </div>
           </div>
