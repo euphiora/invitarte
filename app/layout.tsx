@@ -5,7 +5,19 @@ import Footer from "./Footer";
 export const metadata = {
   title: "Invitarte",
   description: "Diseñamos detalles digitales listos para hacer de cada momento algo especial.",
+
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "Invitarte",
+    description: "Diseñamos detalles digitales listos para hacer de cada momento algo especial.",
+    images: ["/logo.png"],
+  },
 };
+
 
 export default function RootLayout({
   children,

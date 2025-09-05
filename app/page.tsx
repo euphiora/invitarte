@@ -76,43 +76,43 @@ export default function Home() {
 
   const productos = [
     {
-      name: "Invitación Baby Shower Winnie",
-      imageUrl: "/images/babyshower1.jpeg",
+      name: "Invitación Baby Shower Osito",
+      imageUrl: "/images/babyshower1.jpg",
       categoryId: 3,
     },
         {
       name: "Invitación Baby Shower Naranja",
-      imageUrl: "/images/babyshower2.jpeg",
+      imageUrl: "/images/babyshower2.jpg",
       categoryId: 3,
     },
     {
-      name: "Invitación Cumpleaños Adultos Drinks",
-      imageUrl: "/images/bd1.jpeg",
+      name: "Invitación Cumpleaños Adultos Wine",
+      imageUrl: "/images/bd1.jpg",
       categoryId: 2,
     },
     {
-      name: "Invitación Cumpleaños Adultos Wine",
-      imageUrl: "/images/bd2.jpeg",
+      name: "Invitación Cumpleaños Adultos Con Foto",
+      imageUrl: "/images/bd2.jpg",
       categoryId: 2,
     },
     {
       name: "Invitación Cumpleaños Infantil Zoo",
-      imageUrl: "/images/bdk1.jpeg",
+      imageUrl: "/images/bdk1.jpg",
       categoryId: 1,
     },
     {
-      name: "Invitación Cumpleaños Infantil Dinos",
-      imageUrl: "/images/bdk2.jpeg",
+      name: "Invitación Cumpleaños Infantil Animalitos",
+      imageUrl: "/images/bdk2.jpg",
       categoryId: 1,
     },
     {
       name: "Invitación Boda Gatitos Cool",
-      imageUrl: "/images/wedding1.jpeg",
+      imageUrl: "/images/wedding2.jpg",
       categoryId: 4,
     },
         {
       name: "Invitación Boda Flores Vintage",
-      imageUrl: "/images/wedding2.jpeg",
+      imageUrl: "/images/wedding1.jpg",
       categoryId: 4,
     },
   ];
