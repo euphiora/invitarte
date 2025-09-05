@@ -1,10 +1,29 @@
+"use client";
+
 import { Feature } from "@/components/Features";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { Corazon, Mensaje, Reloj } from "@/components/Iconos";
+import { Categoria, CategoryList } from "@/components/Categoria";
+import { useState } from "react";
 
-export default async function Home() {
+const categorias: Categoria[] = [
+  {
+    id: 1,
+    name: "Cumpleaños",
+    isSelected: false,
+  },
+  {
+    id: 2,
+    name: "Bodas",
+    isSelected: false,
+  },
+];
+
+export default function Home() {
+  const [categories, setCategories] = useState<Categoria[]>(categorias);
+  const selectedCategory = categories.find((category) => category.isSelected);
   const features = [
     {
       icon: <Corazon size={56} color="#9AD2E1" />,
@@ -26,30 +45,55 @@ export default async function Home() {
     },
   ];
 
+  const onCategorySelected = (categoryId: number | undefined) => {
+    if (!categoryId) {
+      setCategories((prevCategories) => {
+        prevCategories.forEach((category) => {
+          category.isSelected = false;
+        });
+        return [...prevCategories];
+      });
+      return;
+    }
+
+    setCategories((prevCategories) => {
+      prevCategories.forEach((category) => {
+        category.isSelected = category.id === categoryId;
+      });
+      return [...prevCategories];
+    });
+  };
+
   const productos = [
     {
       name: "Invitación Boda Floral Celeste",
       imageUrl: "/images/producto1.png",
+      categoryId: 2,
     },
     {
       name: "Invitación Cumpleaños Rosa",
       imageUrl: "/images/producto1.png",
+      categoryId: 1,
     },
     {
       name: "Invitación Cumpleaños Rosa",
       imageUrl: "/images/producto1.png",
+      categoryId: 1,
     },
     {
       name: "Invitación Cumpleaños Rosa",
       imageUrl: "/images/producto1.png",
+      categoryId: 1,
     },
     {
       name: "Invitación Cumpleaños Rosa",
       imageUrl: "/images/producto1.png",
+      categoryId: 1,
     },
     {
       name: "Invitación Cumpleaños Rosa",
       imageUrl: "/images/producto1.png",
+      categoryId: 1,
     },
   ];
   return (
@@ -75,13 +119,11 @@ export default async function Home() {
             </div>
           </div>
           <div className="w-80 h-80 flex items-center justify-center order-first md:order-last">
-            <img
-              src="/banner.png"
-            />
+            <img src="/banner.png" />
           </div>
         </div>
       </div>
-      <section id="productos" className="py-16 px-6 bg-[#fff4f2]">
+      <section id="productos" className="py-16 px-6 bg-[#f7f8ff]">
         <div className="text-center mb-12">
           <h2 className="text-5xl sm:text-4xl mb-6">Productos destacados</h2>
           <p className="mt-6 mb-6 text-lg sm:text-xl leading-relaxed text-[#252B42] max-w-mdo">
@@ -89,8 +131,16 @@ export default async function Home() {
             encuentro perfecto. Vamos a crear para combinar tu propósito,
             nuestro con amor y un compromiso.
           </p>
-          <div className="flex flex-wrap justify-center flex-col content-center sm:flex-row gap-8 md:gap-12">
-            {productos.map((producto, i) => (
+          <CategoryList
+            categories={categories}
+            onCategorySelected={onCategorySelected}
+          />
+          <div className="flex flex-wrap justify-center flex-col content-center sm:flex-row gap-8 md:gap-12 py-4">
+            {productos
+            .filter((producto) =>
+              selectedCategory ? producto.categoryId === selectedCategory.id : true
+            )
+            .map((producto, i) => (
               <Card key={i} className="border-0 shadow-lg max-w-60">
                 <CardContent className="p-6">
                   <div className="w-full h-w bg-[#d9d9d9] rounded-lg mb-4 flex items-center justify-center">
