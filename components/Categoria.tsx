@@ -40,7 +40,7 @@ export const CategoryList = ({ categories, onCategorySelected }: CategoryListPro
     (category) => category.isSelected
   );
   return (
-    <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex flex-wrap gap-2 justify-center px-2 py-2">
       <Category
         onCategorySelected={onCategorySelected}
         name="Todas"

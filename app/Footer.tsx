@@ -3,7 +3,7 @@ import { MessageCircleHeart, HeartPlus } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#252b42] text-white py-8">
+    <footer className="bg-primary text-white py-8">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between">
 
@@ -15,10 +15,10 @@ export default function Footer() {
             width={50}
           />
 
-          <div className="flex items-center space-x-6 text-sm text-gray-300">
+          <div className="flex items-center space-x-6 text-sm text-white">
             <a
               href="https://www.instagram.com/invitarteok/#"
-              className="flex items-center space-x-2 hover:text-[#9ad2e1] transition-colors"
+              className="flex items-center space-x-2 hover:text-secondary transition-colors"
               aria-label="Instagram"
             >
               <MessageCircleHeart className="w-5 h-5" />
@@ -27,7 +27,7 @@ export default function Footer() {
 
             <a
               href="https://wa.me/+5493447542735"
-              className="flex items-center space-x-2 hover:text-[#9ad2e1] transition-colors"
+              className="flex items-center space-x-2 hover:text-secondary transition-colors"
               aria-label="WhatsApp"
             >
               <HeartPlus className="w-5 h-5" />

@@ -11,11 +11,21 @@ import { useState } from "react";
 const categorias: Categoria[] = [
   {
     id: 1,
-    name: "Cumpleaños",
+    name: "Cumpleaños Infantiles",
     isSelected: false,
   },
   {
     id: 2,
+    name: "Cumpleaños Adultos",
+    isSelected: false,
+  },
+    {
+    id: 3,
+    name: "Baby Shower",
+    isSelected: false,
+  },
+  {
+    id: 4,
     name: "Bodas",
     isSelected: false,
   },
@@ -26,19 +36,19 @@ export default function Home() {
   const selectedCategory = categories.find((category) => category.isSelected);
   const features = [
     {
-      icon: <Corazon size={56} color="#9AD2E1" />,
+      icon: <Corazon size={56} color="#7AA2A2" />,
       title: "Diseños Únicos Y Con Amor",
       description:
         "Cada pieza está pensada para que se sienta especial y hecha a medida. Nada de plantillas genéricas.",
     },
     {
-      icon: <Reloj size={56} color="#9AD2E1" />,
+      icon: <Reloj size={56} color="#7AA2A2" />,
       title: "Entrega Rápida Y Fácil",
       description:
         "Descargá tus archivos directo a tu celular o computadora. Sin demoras ni complicaciones.",
     },
     {
-      icon: <Mensaje size={56} color="#9AD2E1" />,
+      icon: <Mensaje size={56} color="#7AA2A2" />,
       title: "Te Acompañamos En Todo",
       description:
         "¿Querés imprimir en casa? Te damos tutoriales y te guiamos paso a paso para que quede perfecto.",
@@ -66,34 +76,44 @@ export default function Home() {
 
   const productos = [
     {
-      name: "Invitación Boda Floral Celeste",
-      imageUrl: "/images/producto1.png",
+      name: "Invitación Baby Shower Winnie",
+      imageUrl: "/images/babyshower1.jpeg",
+      categoryId: 3,
+    },
+        {
+      name: "Invitación Baby Shower Naranja",
+      imageUrl: "/images/babyshower2.jpeg",
+      categoryId: 3,
+    },
+    {
+      name: "Invitación Cumpleaños Adultos Drinks",
+      imageUrl: "/images/bd1.jpeg",
       categoryId: 2,
     },
     {
-      name: "Invitación Cumpleaños Rosa",
-      imageUrl: "/images/producto1.png",
+      name: "Invitación Cumpleaños Adultos Wine",
+      imageUrl: "/images/bd2.jpeg",
+      categoryId: 2,
+    },
+    {
+      name: "Invitación Cumpleaños Infantil Zoo",
+      imageUrl: "/images/bdk1.jpeg",
       categoryId: 1,
     },
     {
-      name: "Invitación Cumpleaños Rosa",
-      imageUrl: "/images/producto1.png",
+      name: "Invitación Cumpleaños Infantil Dinos",
+      imageUrl: "/images/bdk2.jpeg",
       categoryId: 1,
     },
     {
-      name: "Invitación Cumpleaños Rosa",
-      imageUrl: "/images/producto1.png",
-      categoryId: 1,
+      name: "Invitación Boda Gatitos Cool",
+      imageUrl: "/images/wedding1.jpeg",
+      categoryId: 4,
     },
-    {
-      name: "Invitación Cumpleaños Rosa",
-      imageUrl: "/images/producto1.png",
-      categoryId: 1,
-    },
-    {
-      name: "Invitación Cumpleaños Rosa",
-      imageUrl: "/images/producto1.png",
-      categoryId: 1,
+        {
+      name: "Invitación Boda Flores Vintage",
+      imageUrl: "/images/wedding2.jpeg",
+      categoryId: 4,
     },
   ];
   return (
@@ -119,11 +139,11 @@ export default function Home() {
             </div>
           </div>
           <div className="w-80 h-80 flex items-center justify-center order-first md:order-last">
-            <img src="/banner.png" />
+            <img src="/banner3.png" />
           </div>
         </div>
       </div>
-      <section id="productos" className="py-16 px-6 bg-[#f7f8ff]">
+      <section id="productos" className="py-16 px-6 bg-[#fffaf4]">
         <div className="text-center mb-12">
           <h2 className="text-5xl sm:text-4xl mb-6">Productos destacados</h2>
           <p className="mt-6 mb-6 text-lg sm:text-xl leading-relaxed text-[#252B42] max-w-mdo">
@@ -180,9 +200,9 @@ export default function Home() {
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="w-80 h-80 bg-[#d9d9d9] rounded-full flex items-center justify-center">
-                <img src="/" className="w-64 h-64 object-cover rounded-full" />
-              </div>
+          <div className="w-80 h-80 flex items-center justify-center order-first md:order-last">
+            <img src="/banner2.png" />
+          </div>
             </div>
           </div>
         </div>
