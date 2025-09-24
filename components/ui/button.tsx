@@ -11,6 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-secondary",
         outline: "border border-primary text-primary bg-white hover:border-secondary hover:text-secondary",
+        form: 'border',
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

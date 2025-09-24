@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MessageCircleHeart, HeartPlus } from "lucide-react";
+import { LINK_WHATSAPP } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -26,7 +27,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://wa.me/+5493447542735"
+              href={LINK_WHATSAPP}
               className="flex items-center space-x-2 hover:text-secondary transition-colors"
               aria-label="WhatsApp"
             >

@@ -1,18 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-
-export type Categoria = {
-  id: number;
-  name: string;
-  isSelected: boolean;
-};
+import { CategoriaType } from "@/types";
 
 type CategoryListProps = {
-  categories: Categoria[];
+  categories: CategoriaType[];
   onCategorySelected: (categoryId: number | undefined) => void;
 };
 
-type CategoryProps = Omit<Categoria, "id"> & {
+type CategoryProps = Omit<CategoriaType, "id"> & {
   onCategorySelected: (categoryId: number | undefined) => void;
   id?: number;
 };

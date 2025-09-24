@@ -2,58 +2,39 @@
 
 import { Feature } from "@/components/Features";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { Corazon, Mensaje, Reloj } from "@/components/Iconos";
-import { Categoria, CategoryList } from "@/components/Categoria";
+import { CategoryList } from "@/components/Categoria";
 import { useState } from "react";
+import { CategoriaType, FeatureType } from "@/types";
+import { Producto } from "@/components/Producto";
+import { CATEGORIAS, LINK_WHATSAPP, PRODUCTOS } from "@/lib/constants";
 
-const categorias: Categoria[] = [
+
+const features: FeatureType[] = [
   {
-    id: 1,
-    name: "Cumpleaños Infantiles",
-    isSelected: false,
+    icon: <Corazon size={56} color="#7AA2A2" />,
+    title: "Diseños Únicos Y Con Amor",
+    description:
+      "Cada pieza está pensada para que se sienta especial y hecha a medida. Nada de plantillas genéricas.",
   },
   {
-    id: 2,
-    name: "Cumpleaños Adultos",
-    isSelected: false,
-  },
-    {
-    id: 3,
-    name: "Baby Shower",
-    isSelected: false,
+    icon: <Reloj size={56} color="#7AA2A2" />,
+    title: "Entrega Rápida Y Fácil",
+    description:
+      "Descargá tus archivos directo a tu celular o computadora. Sin demoras ni complicaciones.",
   },
   {
-    id: 4,
-    name: "Bodas",
-    isSelected: false,
+    icon: <Mensaje size={56} color="#7AA2A2" />,
+    title: "Te Acompañamos En Todo",
+    description:
+      "¿Querés imprimir en casa? Te damos tutoriales y te guiamos paso a paso para que quede perfecto.",
   },
 ];
 
 export default function Home() {
-  const [categories, setCategories] = useState<Categoria[]>(categorias);
+  const [categories, setCategories] = useState<CategoriaType[]>(CATEGORIAS);
   const selectedCategory = categories.find((category) => category.isSelected);
-  const features = [
-    {
-      icon: <Corazon size={56} color="#7AA2A2" />,
-      title: "Diseños Únicos Y Con Amor",
-      description:
-        "Cada pieza está pensada para que se sienta especial y hecha a medida. Nada de plantillas genéricas.",
-    },
-    {
-      icon: <Reloj size={56} color="#7AA2A2" />,
-      title: "Entrega Rápida Y Fácil",
-      description:
-        "Descargá tus archivos directo a tu celular o computadora. Sin demoras ni complicaciones.",
-    },
-    {
-      icon: <Mensaje size={56} color="#7AA2A2" />,
-      title: "Te Acompañamos En Todo",
-      description:
-        "¿Querés imprimir en casa? Te damos tutoriales y te guiamos paso a paso para que quede perfecto.",
-    },
-  ];
 
   const onCategorySelected = (categoryId: number | undefined) => {
     if (!categoryId) {
@@ -74,48 +55,6 @@ export default function Home() {
     });
   };
 
-  const productos = [
-    {
-      name: "Invitación Baby Shower Osito",
-      imageUrl: "/images/babyshower1.jpg",
-      categoryId: 3,
-    },
-        {
-      name: "Invitación Baby Shower Naranja",
-      imageUrl: "/images/babyshower2.jpg",
-      categoryId: 3,
-    },
-    {
-      name: "Invitación Cumpleaños Adultos Wine",
-      imageUrl: "/images/bd1.jpg",
-      categoryId: 2,
-    },
-    {
-      name: "Invitación Cumpleaños Adultos Con Foto",
-      imageUrl: "/images/bd2.jpg",
-      categoryId: 2,
-    },
-    {
-      name: "Invitación Cumpleaños Infantil Zoo",
-      imageUrl: "/images/bdk1.jpg",
-      categoryId: 1,
-    },
-    {
-      name: "Invitación Cumpleaños Infantil Animalitos",
-      imageUrl: "/images/bdk2.jpg",
-      categoryId: 1,
-    },
-    {
-      name: "Invitación Boda Gatitos Cool",
-      imageUrl: "/images/wedding2.jpg",
-      categoryId: 4,
-    },
-        {
-      name: "Invitación Boda Flores Vintage",
-      imageUrl: "/images/wedding1.jpg",
-      categoryId: 4,
-    },
-  ];
   return (
     <div className="relative isolate overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-14 py-20">
@@ -156,29 +95,15 @@ export default function Home() {
             onCategorySelected={onCategorySelected}
           />
           <div className="flex flex-wrap justify-center flex-col content-center sm:flex-row gap-8 md:gap-12 py-4">
-            {productos
-            .filter((producto) =>
-              selectedCategory ? producto.categoryId === selectedCategory.id : true
-            )
-            .map((producto, i) => (
-              <Card key={i} className="border-0 shadow-lg max-w-60">
-                <CardContent className="p-6">
-                  <div className="w-full h-w bg-[#d9d9d9] rounded-lg mb-4 flex items-center justify-center">
-                    <img
-                      src={producto.imageUrl}
-                      alt={producto.name}
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                  <h3 className="text-[#252b42] mb-5 font-semibold text-center">
-                    {producto.name}
-                  </h3>
-                  <Button asChild variant="default">
-                    <Link href="">Personalizar</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+            {PRODUCTOS
+              .filter((producto) =>
+                selectedCategory
+                  ? producto.categoryId === selectedCategory.id
+                  : true
+              )
+              .map((producto, i) => (
+                <Producto key={i} producto={producto} />
+              ))}
           </div>
         </div>
       </section>
@@ -200,9 +125,9 @@ export default function Home() {
               </p>
             </div>
             <div className="flex justify-center">
-          <div className="w-80 h-80 flex items-center justify-center order-first md:order-last">
-            <img src="/banner2.png" />
-          </div>
+              <div className="w-80 h-80 flex items-center justify-center order-first md:order-last">
+                <img src="/banner2.png" />
+              </div>
             </div>
           </div>
         </div>
@@ -236,7 +161,7 @@ export default function Home() {
               <Link href="#productos">Ver productos</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="https://wa.me/+5493447542735">Contactanos</Link>
+              <Link href={LINK_WHATSAPP}>Contactanos</Link>
             </Button>
           </div>
         </div>
