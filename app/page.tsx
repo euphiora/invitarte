@@ -161,7 +161,7 @@ export default function Home() {
               <Link href="#productos">Ver productos</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href={LINK_WHATSAPP}>Contactanos</Link>
+              <Link href={LINK_WHATSAPP} target="_blank" rel="noopener noreferrer">Contactanos</Link>
             </Button>
           </div>
         </div>

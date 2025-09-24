@@ -30,6 +30,8 @@ export default function Footer() {
               href={LINK_WHATSAPP}
               className="flex items-center space-x-2 hover:text-secondary transition-colors"
               aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <HeartPlus className="w-5 h-5" />
               <span>WhatsApp</span>

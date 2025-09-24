@@ -13,6 +13,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { es as dayPickerEs } from "react-day-picker/locale";
 
 type FormularioProductoProps = {
   isOpen: boolean;
@@ -34,7 +35,7 @@ export function FormularioProducto({
     primaryColor: string;
     customMessage: string;
     datePopupOpened: boolean;
-    }>({
+  }>({
     eventName: "",
     hostName: "",
     eventDate: undefined,
@@ -42,11 +43,9 @@ export function FormularioProducto({
     venue: "",
     primaryColor: "#9ad2e1",
     customMessage: "",
-    datePopupOpened: false
+    datePopupOpened: false,
   });
 
-
-  
   const handleInputChange = (
     field: string,
     value: string | Date | undefined | boolean
@@ -58,10 +57,14 @@ export function FormularioProducto({
     e.preventDefault();
 
     const message =
-      `Hola! Quisiera personalizar la invitación "${producto.name}" con los siguientes detalles: \n` +
+      `Hola! Me gustaría cotizar esta invitación "*${producto.name}*" con los siguientes detalles: \n` +
       `Nombre del evento: ${formData.eventName} \n` +
       `Nombre del anfitrión: ${formData.hostName} \n` +
-      `Fecha del evento: ${formData.eventDate} ${formData.eventTime} \n` +
+      (formData.eventDate
+        ? `Fecha del evento: ${format(formData.eventDate!, "dd/MM/yyyy", {
+            locale: es,
+          })} ${formData.eventTime} \n`
+        : "") +
       `Lugar del evento: ${formData.venue} \n` +
       `Color principal: ${formData.primaryColor} \n` +
       `Mensaje personalizado: ${formData.customMessage}`;
@@ -84,13 +87,13 @@ export function FormularioProducto({
               </h2>
               <p className="text-sm text-[#737373]">{producto.name}</p>
             </div>
-            <Button size="sm" onClick={onClose}>
+            <Button size="sm" variant={"link"} onClick={onClose}>
               <X className="w-5 h-5" />
             </Button>
           </div>
 
           <div className="mb-6">
-            <div className="w-full h-48 bg-[#f7f3ee] rounded-lg flex items-center justify-center overflow-hidden border-2 border-dashed border-[#9ad2e1]/30">
+            <div className="w-full bg-[#f7f3ee] rounded-lg flex items-center justify-center overflow-hidden border-2 border-dashed border-[#9ad2e1]/30">
               <Image
                 src={producto.imageUrl || "/placeholder.svg"}
                 alt={producto.name}
@@ -103,7 +106,7 @@ export function FormularioProducto({
               Vista previa del diseño seleccionado
             </p>
           </div>
-{/* 
+          {/* 
           <div className="mb-6 p-4 bg-[#f7f3ee] rounded-lg">
             <h3 className="text-sm font-semibold text-[#252b42] mb-3">
               Vista previa de tu invitación:
@@ -164,7 +167,12 @@ export function FormularioProducto({
                 <Label htmlFor="date-picker" className="px-1">
                   Fecha del evento *
                 </Label>
-                <Popover open={formData.datePopupOpened} onOpenChange={(opened) => handleInputChange("datePopupOpened", opened)}>
+                <Popover
+                  open={formData.datePopupOpened}
+                  onOpenChange={(opened) =>
+                    handleInputChange("datePopupOpened", opened)
+                  }
+                >
                   <PopoverTrigger asChild>
                     <Button
                       variant="form"
@@ -174,7 +182,7 @@ export function FormularioProducto({
                     >
                       <CalendarIcon />
                       {formData.eventDate ? (
-                        format(formData.eventDate, "dd-MM-yyyy", {
+                        format(formData.eventDate, "dd/MM/yyyy", {
                           locale: es,
                         })
                       ) : (
@@ -188,9 +196,13 @@ export function FormularioProducto({
                       selected={formData.eventDate}
                       captionLayout="dropdown"
                       onSelect={(date) => {
-                        setFormData((prev) => ({ ...prev, eventDate: date, datePopupOpened: false }));
+                        setFormData((prev) => ({
+                          ...prev,
+                          eventDate: date,
+                          datePopupOpened: false,
+                        }));
                       }}
-                      locale={es}
+                      locale={dayPickerEs}
                     />
                   </PopoverContent>
                 </Popover>
@@ -204,10 +216,23 @@ export function FormularioProducto({
                   id="time-picker"
                   step="1"
                   defaultValue="00:00:00"
-                  onChange={(e) => handleInputChange("eventTime", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("eventTime", e.target.value)
+                  }
                   className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
                 />
               </div>
+            </div>
+
+            <div>
+              <Label htmlFor="location">Ubicación *</Label>
+              <Input
+                id="location"
+                placeholder="Salón de eventos"
+                value={formData.venue}
+                onChange={(e) => handleInputChange("venue", e.target.value)}
+                required
+              />
             </div>
 
             <div>
@@ -253,11 +278,7 @@ export function FormularioProducto({
               >
                 Cancelar
               </Button>
-              <Button
-                type="submit"
-                variant="default"
-                className="flex-1"
-              >
+              <Button type="submit" variant="default" className="flex-1">
                 Continuar
               </Button>
             </div>
